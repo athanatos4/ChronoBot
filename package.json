@@ -9,6 +9,7 @@
   "author": "chronogis",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^11.1.0"
+    "discord.js": "^11.1.0",
+    "sqlite": "^2.8.0"
   }
 }

@@ -1,14 +1,30 @@
 const Commando = require('discord.js-commando');
-const bot = new Commando.Client();
 
-bot.on('ready', () => {
+const client = new Commando.Client({
+    owner : '317227734327754753'
+});
+
+client.registry.registerGroups([
+        ['random', 'Random'],
+        ['music', 'Music']
+]);
+
+client.registry.registerDefaults();
+
+client.registry.registerCommandsIn(__dirname + "/commands");
+
+client.on('ready', () => {
     console.log('Prêt!');
 });
 
-bot.login('MzE3MjI3NzM0MzI3NzU0NzUz.DAiH9A.svpw-1sbBYk3PoVMxtyFKrk1jxQ');
+client.on('message', message => {
+    if (message.content === 'Salut') {
+        message.reply('Ta gueule');
+    }
+});
 
-bot.registry.registerGroup('random', 'Random');
+client.on('guildMemberAdd', member => {
+    member.guild.defaultChannel.send('Bienvenue sur le serveur, ${member}!');
+});
 
-bot.registry.registerCommandsIn(__dirname + "/commands");
-
-bot.registry.registerDefaults();
+client.login('MzE3MjI3NzM0MzI3NzU0NzUz.DAiH9A.svpw-1sbBYk3PoVMxtyFKrk1jxQ');
