@@ -20,7 +20,7 @@ client.on('ready', () => {
 client.on('message', message => {
     if (/alex/i.test(message.content))
     {
-        message.reply('Salut.', {tts: false});
+        message.reply('${@Meteor5270} est con', {tts: false});
     }
 });
 
