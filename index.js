@@ -18,8 +18,9 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-    if (message.content === 'Salut') {
-        message.reply('Ta gueule');
+    if (/alex/i.test(message.content))
+    {
+        message.reply('Salut.', {tts: false});
     }
 });
 
