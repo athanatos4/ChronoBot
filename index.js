@@ -20,7 +20,7 @@ client.on('ready', () => {
 client.on('message', message => {
     if (/alex/i.test(message.content))
     {
-        message.channel.send(`Météor est idiot`, {tts: false});
+        message.channel.send(`${user.name = Meteor, id = 5270} est con`, {tts: false});
     }
 });
 
