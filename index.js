@@ -20,7 +20,7 @@ client.on('ready', () => {
 client.on('message', message => {
     if (/alex/i.test(message.content))
     {
-        message.channel.send(`Météor est idiot`, {tts: false});
+        message.channel.send("@Meteor#5270" + ` est idiot`, {tts: false});
     }
 });
 

@@ -59,7 +59,14 @@ module.exports = class RussianRouletteCommand extends Command {
 
 			for (const slot in barrel) {
 				let currentPlayer = players[slot % players.length];
-				if (!deadPlayer) deadPlayer = currentPlayer;
+         msg.say('Au tour de ' + currentPlayer.user.toString());
+        if(barrel[slot]=== 1)
+        {
+          msg.say('Ah, ben t\'es mort ' + currentPlayer.user.toString());
+          deadPlayer = currentPlayer;
+          break;
+        }
+        msg.say('C\'est bon pour ' + currentPlayer.user.toString());
 			}
 
 			survivors = players.filter(player => player !== deadPlayer);
