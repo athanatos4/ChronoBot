@@ -10,7 +10,7 @@ module.exports = class RussianRouletteCommand extends Command {
 			group: 'random',
 			memberName: 'russian-roulette',
 			description: `Play a game of russian roulette!`,
-			details: `Play a game of russian roulette.`,
+			details: `Joue à la roulette russe.`,
 			guildOnly: true,
 			throttling: {
 				usages: 1,
@@ -24,16 +24,16 @@ module.exports = class RussianRouletteCommand extends Command {
 
 		if (roulette) {
 			if (roulette.hasPlayer(msg.author.id)) {
-				return msg.reply('you have already joined this game of russian roulette.');
+				return msg.reply('Vous avez déjà rejoint.');
 			}
 
 			if (roulette.players.length === 6) {
-				return msg.reply('only 6 people can join at a time. You\'ll have to wait for the next round');
+				return msg.reply('Seulement six personnes peuvent rejoindre');
 			}
 
 			roulette.join(msg.author);
 
-			return msg.reply('you have successfully joined the game.');
+			return msg.reply('vous avez rejoint la partie.');
 		}
 
 		roulette = new RussianRoulette(msg.guild.id);
@@ -42,16 +42,16 @@ module.exports = class RussianRouletteCommand extends Command {
 		const barrel = this.generateBarrel();
 
 		return msg.say(stripIndents`
-			A new game of russian roulette has been initiated!
+			Une nouvelle partie de roulette russe commence!
 
-			Use the ${msg.usage()} command in the next 15 seconds to join!
+			Utilisez la commande ${msg.usage()} dans les 15 secondes pour rejoindre!
 		`).then(async () => {
-			setTimeout(() => msg.say('5 more seconds for new people to join'), 10000);
-			setTimeout(() => { if (roulette.players.length > 1) msg.say('The game begins!'); }, 14500);
+			setTimeout(() => msg.say('5 secondes de plus pour rejoindre'), 10000);
+			setTimeout(() => { if (roulette.players.length > 1) msg.say('La partie commence !'); }, 14500);
 
 			const players = await roulette.awaitPlayers(15000);
 			if (players.length === 1) {
-				return msg.say('Seems like no one else wanted to join. Ah well, maybe another time.');
+				return msg.say('Il semble que aucune autre personne ne veut rejoindre.');
 			}
 
 			let deadPlayer = null;
@@ -73,7 +73,7 @@ module.exports = class RussianRouletteCommand extends Command {
 
 			return msg.embed({
 				description: stripIndents`
-					__**Survivors**__
+					__**Survivants**__
 					${survivors.map(survivor => survivor.user.username).join('\n')}
 				`
 			});
